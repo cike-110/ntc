@@ -1,0 +1,14 @@
+
+			<form action="/example/html/form_action.asp" method="post">
+				<fieldset>
+					 <legend>表单项</legend><br/> 
+					  <label>姓名：</label><input type="text"  name="name"/><br/> 
+					  <label>电话：</label> <input type="text"  name="phone"/><br/> 
+					  <label>驾照号：</label> <input type="text"  name="drilic"/><br/> 
+					  <label>车牌号：</label> <input type="text"  name="licpnum"/><br/> 
+					  <label>公司：</label> <input type="text"  name="compony"/><br/> 
+					  <label>车龄：</label> <input type="text"  name="carnum"/><br/> 
+					  <button type="submit" class="btn">提交</button>
+				</fieldset>
+			</form>
+

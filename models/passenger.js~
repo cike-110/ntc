@@ -1,0 +1,68 @@
+var mongodb = require('./db');
+
+//定义打车用户模型
+function Passenger(passenger){
+	this.passengername = passenger.passengername;
+	this.passphonenum = passenger.passphonenum;
+};
+
+module.exports = Passenger;
+
+//将打车用户注册信息保存到数据库中去
+Passenger.prototype.save = function save(callback){
+	//存入mongodb的文档
+	var passenger = {
+	passengername : this.passengername;
+	passphonenum : this.passphonenum;
+	};
+	
+	mongodb.open(function(err,db){
+		if(err){
+		return callback(err);
+		}
+		db.collection('passenger',function(err, collection){
+		if(err){
+			mongodb.close();
+			return callback(err);
+		}
+		
+		//为passphonenum建立索引
+		collection.ensureIndex('passphonenum',{unique: true});
+		//将信息吸入到passenger集合中
+		collection.insert(passenger,{safe:true},function(err,passenger){
+			mongodb.close();
+			callback(err,passenger);
+		});
+		});
+	});
+	
+};
+
+//数据查询方法（去确定是否存在此用户）
+Passenger.get = function get(passphonenum,callback){
+	mongodb.open(function(err,db){
+		if(err){
+			mongodb.close();
+			return callback(err);
+		}
+		//读取passenger集合中的数据
+		db.collection('passenger',function(err,collection){
+			if(err){
+				mongodb.close();
+				return callback(err);
+			}
+			//查询passphonenum属性为passphonenum的文档
+			collection.findOne({passphonenum:passphonenum},function(err, doc){
+				mongodb.close();
+				if(doc){
+				//将查询结果封装成对象
+				var passenger = new Passenger(doc);
+				callback(err,passenger);
+				}else{
+					callback(err,null);
+				}
+			});
+		});
+	});
+};
+

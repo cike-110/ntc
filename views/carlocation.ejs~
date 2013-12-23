@@ -1,0 +1,15 @@
+<html>
+<head>司机用户注册页面</head>
+<body>
+<h1>司机定位信息上传模拟页面</h1>
+<form action="/passenger" method="post">
+	<fieldset>
+		<legend>表单项</legend><br/> 
+		<label>电话：</label><input type="text"  name="passengername"/><br/> 
+		<label>经度：</label> <input type="text"  name="passphonenum"/><br/>
+		<label>纬度：</label> <input type="text"  name="passphonenum"/><br/> 
+		<button type="submit" class="btn">提交</button>
+	</fieldset>
+</form>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<html>
+<head>司机用户注册信息更改页面</head>
+<body>
+<h1>司机定位信息上传模拟页面</h1>
+<form action="/carlocaupdate" method="post">
+	<fieldset>
+		<legend>表单项</legend><br/> 
+		<label>经度：</label> <input type="text"  name="carphone"/><br/>
+		<label>经度：</label> <input type="text"  name="long"/><br/>
+		<label>纬度：</label> <input type="text"  name="lat"/><br/> 
+		<button type="submit" class="btn">提交</button>
+	</fieldset>
+</form>
+</body>
+</html>
